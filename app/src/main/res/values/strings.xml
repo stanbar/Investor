@@ -1,0 +1,29 @@
+<resources>
+    <string name="app_name">CompoundInterest</string>
+    <string name="action_settings">Settings</string>
+    <string name="quote">Compound interest is the eighth wonder of the world. He who understands it, earns it… he who doesn\'t, pays it</string>
+    <string name="set">Submit</string>
+    <string name="cancel">Cancel</string>
+
+    <!--Fragments Titles-->
+    <string name="compound_effect">Compound Effect</string>
+    <string name="return_of_investment">Return of investment</string>
+
+    <!--Inputs-->
+    <!--Compount Effect-->
+    <string name="amount_title">Amount</string>
+    <string name="amount_message">Initial Amount</string>
+    <string name="period_title">Period</string>
+    <string name="period_message">Period of time</string>
+    <string name="interest_title">Interest</string>
+    <string name="interest_message">Interest</string>
+
+    <!--ROI-->
+    <string name="investment_amount_title">Amount Invested</string>
+    <string name="return_amount_title">Amount Returned</string>
+    <string name="return_amount_message">Amount Returned</string>
+    <string name="investment_time_title">Investment Time</string>
+    <string name="investment_time_message">Investment Time</string>
+    <string name="investment_amount_message">Amount Invested</string>
+
+</resources>

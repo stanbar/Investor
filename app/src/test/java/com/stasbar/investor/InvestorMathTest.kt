@@ -1,4 +1,4 @@
-package com.stasbar.compoundinterest
+package com.stasbar.investor
 
 import junit.framework.Assert
 import org.junit.Test
@@ -7,7 +7,7 @@ import org.junit.Test
 /**
  * Created by stasbar on 13.07.2017
  */
-class CompoundMathTest{
+class InvestorMathTest {
 
     @Test
     fun compoundTest1(){
@@ -16,7 +16,7 @@ class CompoundMathTest{
         val n = 12
         val t = 10
 
-        val result = CompoundMath.calc(P,r,n,t)
+        val result = InvestorMath.calc(P,r,n,t)
         Assert.assertEquals(8235.0474884514,result)
     }
 }

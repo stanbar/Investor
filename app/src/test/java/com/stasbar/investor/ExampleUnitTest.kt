@@ -1,4 +1,4 @@
-package com.stasbar.compoundinterest
+package com.stasbar.investor
 
 import org.junit.Test
 

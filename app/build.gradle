@@ -6,7 +6,7 @@ android {
     compileSdkVersion 26
     buildToolsVersion "26.0.0"
     defaultConfig {
-        applicationId "com.stasbar.compoundinterest"
+        applicationId "com.stasbar.investor"
         minSdkVersion 16
         targetSdkVersion 26
         versionCode 1

@@ -1,4 +1,4 @@
-package com.stasbar.compoundinterest.dialogs
+package com.stasbar.investor.dialogs
 
 
 import android.app.Dialog
@@ -11,11 +11,10 @@ import android.view.KeyEvent
 import android.view.inputmethod.EditorInfo
 import android.widget.TextView
 import android.text.InputType
-import com.stasbar.compoundinterest.R
+import com.stasbar.investor.R
 import android.view.WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE
-import com.stasbar.compoundinterest.Input
-import com.stasbar.compoundinterest.fragments.BaseFragment
-import com.stasbar.compoundinterest.fragments.CompoundFragment
+import com.stasbar.investor.Input
+import com.stasbar.investor.fragments.BaseFragment
 
 /**
  * Created by stasbar on 13.07.2017

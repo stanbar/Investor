@@ -1,4 +1,4 @@
-package com.stasbar.compoundinterest.fragments
+package com.stasbar.investor.fragments
 
 import android.graphics.Color
 import android.os.Bundle
@@ -10,10 +10,9 @@ import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.EditText
 import android.widget.Toast
-import com.stasbar.compoundinterest.CompoundMath
-import com.stasbar.compoundinterest.Input
-import com.stasbar.compoundinterest.R
-import com.stasbar.compoundinterest.dialogs.LabelDialogFragment
+import com.stasbar.investor.InvestorMath
+import com.stasbar.investor.Input
+import com.stasbar.investor.R
 import kotlinx.android.synthetic.main.fragment_main.*
 import lecho.lib.hellocharts.model.*
 
@@ -23,7 +22,6 @@ import lecho.lib.hellocharts.model.*
 
 class CompoundFragment : BaseFragment() {
 
-    private var mFailed = false
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
@@ -34,16 +32,20 @@ class CompoundFragment : BaseFragment() {
 
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        chart.isInteractive = true
-        fab.setOnClickListener { calculateAndShow() }
-
-        setTagsAndListeners()
-
-        spinnerCapitalizationPerYear.adapter = ArrayAdapter(activity, android.R.layout.simple_spinner_item, COMPOUNDS.map { it.name })
-        spinnerPeriodType.adapter = ArrayAdapter(activity, android.R.layout.simple_spinner_item, PERIODS.map { it.name })
+        setupChart()
+        setupSpinners()
     }
 
-    private fun setTagsAndListeners() {
+    private fun setupChart() {
+        chart.isInteractive = true
+        TODO("Pimp chart")
+
+    }
+
+    override fun setTagsAndListeners() {
+
+        fab.setOnClickListener { calculateAndShow() }
+
         val onTouchListener = View.OnTouchListener { view, motionEvent ->
             if (motionEvent.action == MotionEvent.ACTION_DOWN) {
                 showDialogFor(view as EditText, view.getTag() as Input)
@@ -56,20 +58,14 @@ class CompoundFragment : BaseFragment() {
         editTextPeriod.setOnTouchListener(onTouchListener)
         editTextInterest.tag = Input.INTEREST
         editTextInterest.setOnTouchListener(onTouchListener)
-
     }
 
-    private fun showDialogFor(editText: EditText, input: Input) {
-        val fragmentManager = fragmentManager
-        fragmentManager.executePendingTransactions()
-        val ft = fragmentManager.beginTransaction()
-        val prev = fragmentManager.findFragmentByTag("label_dialog")
-        if (prev != null) ft.remove(prev)
-        ft.addToBackStack(null)
-        val newFragment = LabelDialogFragment.newInstance(input, editText.text.toString())
-        newFragment.setTargetFragment(this, 0)
-        newFragment.show(ft, "label_dialog")
+    override fun setupSpinners() {
+        spinnerCapitalizationPerYear.adapter = ArrayAdapter(activity, android.R.layout.simple_spinner_item, COMPOUNDS.map { it.name })
+        spinnerPeriodType.adapter = ArrayAdapter(activity, android.R.layout.simple_spinner_item, PERIODS.map { it.name })
     }
+
+
 
 
     private fun calculateAndShow() {
@@ -111,8 +107,8 @@ class CompoundFragment : BaseFragment() {
         }
 
 
-        val compoundValues = CompoundMath.calculateHistogram(principalAmount.toFloat(), (interest / 100).toFloat(), compoundsPerYear, period / periodType)
-        val nonCompoundValues = CompoundMath.calculateHistogram(principalAmount.toFloat(), 0.0f, compoundsPerYear, period / periodType)
+        val compoundValues = InvestorMath.compoundEffectHistogram(principalAmount.toFloat(), (interest / 100).toFloat(), compoundsPerYear, period / periodType)
+        val nonCompoundValues = InvestorMath.compoundEffectHistogram(principalAmount.toFloat(), 0.0f, compoundsPerYear, period / periodType)
         val compoundPoints = makePoints(compoundValues)
         val nonCompoundPoints = makePoints(nonCompoundValues)
         compoundPoints.forEach { Log.d("compoundPoints", it.toString()) }
@@ -154,6 +150,7 @@ class CompoundFragment : BaseFragment() {
             Input.AMOUNT -> editTextPrincipalAmount.setText(newValue)
             Input.INTEREST -> editTextInterest.setText(newValue)
             Input.PERIOD -> editTextPeriod.setText(newValue)
+            else -> throw IllegalStateException("Caught illegal Input for this fragment")
         }
     }
 
@@ -169,13 +166,13 @@ class CompoundFragment : BaseFragment() {
 
         data class Compound(val name: String, val value: Int)
 
-        val PERIODS = object : ArrayList<Period>() {
+        public val PERIODS = object : ArrayList<Period>() {
             init {
                 add(Period("Months", 12))
                 add(Period("Years", 1))
             }
         }
 
-        data class Period(val name: String, val value: Int)
+        public data class Period(val name: String, val value: Int)
     }
 }

@@ -1,7 +1,6 @@
-package com.stasbar.compoundinterest
+package com.stasbar.investor
 
 import android.support.annotation.StringRes
-import android.view.View
 
 /**
  * Created by stasbar on 13.07.2017

@@ -1,4 +1,4 @@
-package com.stasbar.compoundinterest
+package com.stasbar.investor
 
 import android.support.test.InstrumentationRegistry
 import android.support.test.runner.AndroidJUnit4

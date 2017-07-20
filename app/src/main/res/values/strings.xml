@@ -1,9 +1,10 @@
 <resources>
     <string name="app_name">CompoundInterest</string>
     <string name="action_settings">Settings</string>
-    <string name="quote">Compound interest is the eighth wonder of the world. He who understands it, earns it… he who doesn\'t, pays it</string>
     <string name="set">Submit</string>
     <string name="cancel">Cancel</string>
+    <string name="drawer_open">Open</string>
+    <string name="drawer_close">Close</string>
 
     <!--Fragments Titles-->
     <string name="compound_effect">Compound Effect</string>
@@ -25,5 +26,9 @@
     <string name="investment_time_title">Investment Time</string>
     <string name="investment_time_message">Investment Time</string>
     <string name="investment_amount_message">Amount Invested</string>
+
+
+    <!--Others-->
+    <string name="quote">Compound interest is the eighth wonder of the world. He who understands it, earns it… he who doesn\'t, pays it</string>
 
 </resources>

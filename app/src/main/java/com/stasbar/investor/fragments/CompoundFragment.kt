@@ -13,7 +13,7 @@ import android.widget.Toast
 import com.stasbar.investor.InvestorMath
 import com.stasbar.investor.Input
 import com.stasbar.investor.R
-import kotlinx.android.synthetic.main.fragment_main.*
+import kotlinx.android.synthetic.main.fragment_compound_effect.*
 import lecho.lib.hellocharts.model.*
 
 /**
@@ -25,7 +25,7 @@ class CompoundFragment : BaseFragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
-        val view =  inflater.inflate(R.layout.fragment_main, container, false)
+        val view =  inflater.inflate(R.layout.fragment_compound_effect, container, false)
         setTitle(R.string.compound_effect)
         return view
     }
@@ -38,7 +38,8 @@ class CompoundFragment : BaseFragment() {
 
     private fun setupChart() {
         chart.isInteractive = true
-        TODO("Pimp chart")
+
+        //TODO Pimp chart
 
     }
 

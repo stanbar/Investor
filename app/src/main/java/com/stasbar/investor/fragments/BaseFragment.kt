@@ -42,5 +42,5 @@ abstract class BaseFragment : Fragment() {
         newFragment.show(ft, "label_dialog")
     }
 
-    abstract protected fun set(input: Input, newValue: String)
+    abstract fun set(input: Input, newValue: String)
 }

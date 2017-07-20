@@ -20,22 +20,10 @@ import com.stasbar.investor.fragments.BaseFragment
  * Created by stasbar on 13.07.2017
  */
 class LabelDialogFragment : DialogFragment() {
-    companion object {
-        val CURRENT_VALUE_KEY = "current_value_key"
-        val CURRENT_INPUT_KEY = "current_input_key"
-        fun newInstance(input: Input, currentValue: String): LabelDialogFragment {
-            val args = Bundle()
-            args.putString(CURRENT_VALUE_KEY, currentValue)
-            args.putSerializable(CURRENT_INPUT_KEY, input)
-            val frag = LabelDialogFragment()
-            frag.arguments = args
-            return frag
-        }
-
-    }
 
     private lateinit var mLabelBox: EditText
-    lateinit var input: Input
+    private lateinit var input: Input
+
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         val context = activity
 
@@ -50,7 +38,7 @@ class LabelDialogFragment : DialogFragment() {
                 .setNegativeButton(R.string.cancel, CancelListener())
                 .create()
         if (alertDialog.window != null)
-            alertDialog.window.setSoftInputMode(SOFT_INPUT_STATE_VISIBLE);
+            alertDialog.window.setSoftInputMode(SOFT_INPUT_STATE_VISIBLE)
         return alertDialog
 
     }
@@ -61,8 +49,8 @@ class LabelDialogFragment : DialogFragment() {
         mLabelBox.setSingleLine()
 
         val value = arguments.getString(CURRENT_VALUE_KEY)
-        if (input.decimal) mLabelBox.inputType = InputType.TYPE_NUMBER_FLAG_DECIMAL
-        else mLabelBox.inputType = InputType.TYPE_CLASS_NUMBER
+        if (input.decimal) mLabelBox.setInputType(EditorInfo.TYPE_CLASS_NUMBER or EditorInfo.TYPE_NUMBER_FLAG_DECIMAL)
+        else mLabelBox.setInputType(EditorInfo.TYPE_CLASS_NUMBER)
         mLabelBox.setText(value)
         mLabelBox.selectAll()
     }
@@ -99,6 +87,20 @@ class LabelDialogFragment : DialogFragment() {
         override fun onClick(dialog: DialogInterface, which: Int) {
             dismiss()
         }
+    }
+
+    companion object {
+        val CURRENT_VALUE_KEY = "current_value_key"
+        val CURRENT_INPUT_KEY = "current_input_key"
+        fun newInstance(input: Input, currentValue: String): LabelDialogFragment {
+            val args = Bundle()
+            args.putString(CURRENT_VALUE_KEY, currentValue)
+            args.putSerializable(CURRENT_INPUT_KEY, input)
+            val frag = LabelDialogFragment()
+            frag.arguments = args
+            return frag
+        }
+
     }
 
 

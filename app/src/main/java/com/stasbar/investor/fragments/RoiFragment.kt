@@ -1,6 +1,5 @@
 package com.stasbar.investor.fragments
 
-
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.MotionEvent
@@ -12,7 +11,6 @@ import android.widget.Toast
 import com.stasbar.investor.InvestorMath
 import com.stasbar.investor.Input
 import com.stasbar.investor.R
-import kotlinx.android.synthetic.main.fragment_main.*
 import kotlinx.android.synthetic.main.fragment_roi.*
 
 /**
@@ -24,9 +22,7 @@ class RoiFragment : BaseFragment() {
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
-        val view = inflater!!.inflate(R.layout.fragment_roi, container, false)
-        setTitle(R.string.return_of_investment)
-        return view
+        return inflater!!.inflate(R.layout.fragment_roi, container, false)
     }
 
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
@@ -37,7 +33,6 @@ class RoiFragment : BaseFragment() {
     override fun setupSpinners() {
         spinnerTimeOfInvestmentType.adapter = ArrayAdapter(activity, android.R.layout.simple_spinner_item, CompoundFragment.PERIODS.map { it.name })
     }
-
 
 
     override fun setTagsAndListeners() {
@@ -88,17 +83,17 @@ class RoiFragment : BaseFragment() {
             return
         }
 
-        val returnOfInvestment = InvestorMath.returnOfInvestment(investmentAmount,returnAmount)
-        val investmentGain = InvestorMath.investmentGain(investmentAmount,returnAmount)
-        val annualizedROI = InvestorMath.annualizedReturnOfInvestment(investmentAmount,returnAmount,timeOfInvestment)
-        showResults(returnOfInvestment, investmentGain,annualizedROI)
+        val returnOfInvestment = InvestorMath.returnOfInvestment(investmentAmount, returnAmount)
+        val investmentGain = InvestorMath.investmentGain(investmentAmount, returnAmount)
+        val annualizedROI = InvestorMath.annualizedReturnOfInvestment(investmentAmount, returnAmount, timeOfInvestment)
+        showResults(returnOfInvestment, investmentGain, annualizedROI)
 
 
     }
 
     private fun showResults(returnOfInvestment: Double, investmentGain: Double, annualizedROI: Double) {
         textViewROI.text = returnOfInvestment.toString()
-        textViewProfit.text = investmentGain.toString()
+        textViewInvestmentGain.text = investmentGain.toString()
         textViewAnnualROI.text = annualizedROI.toString()
 
     }
@@ -111,7 +106,6 @@ class RoiFragment : BaseFragment() {
             else -> throw IllegalStateException("Caught illegal Input for this fragment")
         }
     }
-
 
 
 }
